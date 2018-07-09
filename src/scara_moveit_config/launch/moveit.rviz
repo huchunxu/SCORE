@@ -648,8 +648,8 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: /root
-  Name: root
+    Fixed Frame: /base_link
+  Name: base_link
   Tools:
     - Class: rviz/Interact
       Hide Inactive Objects: true
