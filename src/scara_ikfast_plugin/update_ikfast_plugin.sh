@@ -1,0 +1,1 @@
+rosrun moveit_kinematics create_ikfast_moveit_plugin.py scara manipulator scara_ikfast_plugin /home/k-okada/catkin_ws/ws_scara/src/isnow4ever/SCORE/src/scara_ikfast_plugin/src/scara_manipulator_ikfast_solver.cpp
