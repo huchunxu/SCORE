@@ -272,4 +272,12 @@
       effort="200"
       velocity="0.5" />
   </joint>
+  <link name="tip_link" />
+  <joint name="link3_to_tip_link" type="fixed" >
+    <origin
+        xyz="0 0 0"
+        rpy="0 1.570796326795 0" />
+    <parent link="link3"/>
+    <child link="tip_link"/>
+  </joint>
 </robot>
