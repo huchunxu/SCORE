@@ -309,15 +309,16 @@ eetrans[0]=(x4+((x2*x4))+(((-1.0)*x3*x5)));
 IkReal x6=((1.0)*x5);
 eetrans[1]=((((-1.0)*x2*x6))+(((-1.0)*x6))+(((-1.0)*x3*x4)));
 eetrans[2]=((0.13297)+j[2]);
+eerot[0]=(-j[0]-j[1]-j[3]);
 }
 
 IKFAST_API int GetNumFreeParameters() { return 0; }
 IKFAST_API int* GetFreeParameters() { return NULL; }
-IKFAST_API int GetNumJoints() { return 3; }
+IKFAST_API int GetNumJoints() { return 4; }
 
 IKFAST_API int GetIkRealSize() { return sizeof(IkReal); }
 
-IKFAST_API int GetIkType() { return 0x33000003; }
+IKFAST_API int GetIkType() { return 0x4400000d; }
 
 class IKSolver {
 public:
@@ -452,7 +453,7 @@ if( j0valid[iij0] && IKabs(cj0array[ij0]-cj0array[iij0]) < IKFAST_SOLUTION_THRES
 j0 = j0array[ij0]; cj0 = cj0array[ij0]; sj0 = sj0array[ij0];
 
 {
-std::vector<IkSingleDOFSolutionBase<IkReal> > vinfos(3);
+std::vector<IkSingleDOFSolutionBase<IkReal> > vinfos(4);
 vinfos[0].jointtype = 1;
 vinfos[0].foffset = j0;
 vinfos[0].indices[0] = _ij0[0];
@@ -463,11 +464,16 @@ vinfos[1].foffset = j1;
 vinfos[1].indices[0] = _ij1[0];
 vinfos[1].indices[1] = _ij1[1];
 vinfos[1].maxsolutions = _nj1;
+vinfos[3].jointtype = 17;
+vinfos[3].foffset = j2;
+vinfos[3].indices[0] = _ij2[0];
+vinfos[3].indices[1] = _ij2[1];
+vinfos[3].maxsolutions = _nj2;
 vinfos[2].jointtype = 17;
-vinfos[2].foffset = j2;
-vinfos[2].indices[0] = _ij2[0];
-vinfos[2].indices[1] = _ij2[1];
-vinfos[2].maxsolutions = _nj2;
+vinfos[2].foffset = -eerot[0] - (j0 + j1);
+vinfos[2].indices[0] = 1;
+vinfos[2].indices[1] = -1;
+vinfos[2].maxsolutions = 1;
 std::vector<int> vfree(0);
 solutions.AddSolution(vinfos,vfree);
 }
@@ -563,7 +569,7 @@ if( j0valid[iij0] && IKabs(cj0array[ij0]-cj0array[iij0]) < IKFAST_SOLUTION_THRES
 j0 = j0array[ij0]; cj0 = cj0array[ij0]; sj0 = sj0array[ij0];
 
 {
-std::vector<IkSingleDOFSolutionBase<IkReal> > vinfos(3);
+std::vector<IkSingleDOFSolutionBase<IkReal> > vinfos(4);
 vinfos[0].jointtype = 1;
 vinfos[0].foffset = j0;
 vinfos[0].indices[0] = _ij0[0];
@@ -574,11 +580,16 @@ vinfos[1].foffset = j1;
 vinfos[1].indices[0] = _ij1[0];
 vinfos[1].indices[1] = _ij1[1];
 vinfos[1].maxsolutions = _nj1;
+vinfos[3].jointtype = 17;
+vinfos[3].foffset = j2;
+vinfos[3].indices[0] = _ij2[0];
+vinfos[3].indices[1] = _ij2[1];
+vinfos[3].maxsolutions = _nj2;
 vinfos[2].jointtype = 17;
-vinfos[2].foffset = j2;
-vinfos[2].indices[0] = _ij2[0];
-vinfos[2].indices[1] = _ij2[1];
-vinfos[2].maxsolutions = _nj2;
+vinfos[2].foffset = -eerot[0] - (j0 + j1);
+vinfos[2].indices[0] = 1;
+vinfos[2].indices[1] = -1;
+vinfos[2].maxsolutions = 1;
 std::vector<int> vfree(0);
 solutions.AddSolution(vinfos,vfree);
 }
@@ -732,7 +743,7 @@ continue;
 }
 
 {
-std::vector<IkSingleDOFSolutionBase<IkReal> > vinfos(3);
+std::vector<IkSingleDOFSolutionBase<IkReal> > vinfos(4);
 vinfos[0].jointtype = 1;
 vinfos[0].foffset = j0;
 vinfos[0].indices[0] = _ij0[0];
@@ -743,11 +754,16 @@ vinfos[1].foffset = j1;
 vinfos[1].indices[0] = _ij1[0];
 vinfos[1].indices[1] = _ij1[1];
 vinfos[1].maxsolutions = _nj1;
+vinfos[3].jointtype = 17;
+vinfos[3].foffset = j2;
+vinfos[3].indices[0] = _ij2[0];
+vinfos[3].indices[1] = _ij2[1];
+vinfos[3].maxsolutions = _nj2;
 vinfos[2].jointtype = 17;
-vinfos[2].foffset = j2;
-vinfos[2].indices[0] = _ij2[0];
-vinfos[2].indices[1] = _ij2[1];
-vinfos[2].maxsolutions = _nj2;
+vinfos[2].foffset = -eerot[0] - (j0 + j1);
+vinfos[2].indices[0] = 1;
+vinfos[2].indices[1] = -1;
+vinfos[2].maxsolutions = 1;
 std::vector<int> vfree(0);
 solutions.AddSolution(vinfos,vfree);
 }
